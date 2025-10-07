@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: { en: 'Node.js', ar: 'Node.js', de: 'Node.js' }, percentage: 70 },
     ];
     
+    // CORRECTED ICON NAMES
     const skillsGridData = [
         { name: 'HTML5', icon: 'file-code-2' },
         { name: 'CSS3', icon: 'palette' },
@@ -157,6 +158,9 @@ document.addEventListener('DOMContentLoaded', function() {
         renderSkills();
         renderPortfolio(document.querySelector('#portfolio-filters .filter-btn.active')?.dataset.filter || 'all');
         langDropdown.classList.add('hidden');
+        
+        // CRITICAL FIX: Re-initialize icons after DOM update
+        safeCreateIcons();
     };
 
     langSwitcherBtn.addEventListener('click', (e) => {
