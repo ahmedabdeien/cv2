@@ -1,0 +1,273 @@
+/* ==============================
+VARIABLES & THEME SETUP
+==============================
+*/
+:root {
+    /* Color Presets */
+    --color-primary-light: #6C63FF;
+    --color-primary-dark: #8A82FF;
+    --color-secondary-light: #4ECDC4;
+    --color-secondary-dark: #63E2D8;
+    
+    --gradient-start: var(--color-primary-light);
+    --gradient-end: var(--color-secondary-light);
+
+    --text-light: #1f2937;
+    --text-dark: #f3f4f6;
+    --bg-light: #f9fafb;
+    --bg-dark: #111827;
+    --card-bg-light: rgba(255, 255, 255, 0.5);
+    --card-bg-dark: rgba(31, 41, 55, 0.5);
+    --border-light: #e5e7eb;
+    --border-dark: #374151;
+}
+
+html.dark {
+    --gradient-start: var(--color-primary-dark);
+    --gradient-end: var(--color-secondary-dark);
+}
+
+/* ==============================
+BASE STYLES
+==============================
+*/
+body {
+    font-family: 'Inter', 'Cairo', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html[lang="de"] body {
+    font-family: 'Inter', sans-serif;
+}
+
+html.dark body {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+/* ==============================
+COMPONENTS
+==============================
+*/
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--card-bg-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark .glass-card {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--border-dark);
+}
+
+/* Gradient Text & Button */
+.gradient-text {
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.gradient-btn {
+    background-image: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    transition: all 0.3s ease;
+    background-size: 200% auto;
+}
+.gradient-btn:hover {
+    background-position: right center;
+}
+
+/* Floating Blobs */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+}
+.blob-1 { background-color: rgba(108, 99, 255, 0.2); width: 400px; height: 400px; top: -100px; left: -100px; }
+.blob-2 { background-color: rgba(78, 205, 196, 0.2); width: 300px; height: 300px; bottom: 0; right: 0; }
+
+html.dark .blob-1 { background-color: rgba(138, 130, 255, 0.15); }
+html.dark .blob-2 { background-color: rgba(99, 226, 216, 0.15); }
+
+/* Typed.js Cursor */
+.typed-cursor {
+    color: var(--color-secondary-light);
+    font-size: 2.5rem;
+}
+html.dark .typed-cursor {
+     color: var(--color-secondary-dark);
+}
+
+/* Skill Progress Bar */
+.progress-bar-inner {
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+}
+
+/* Skill Icon */
+.skill-icon {
+    color: var(--color-primary-light);
+    transition: color 0.3s ease;
+}
+html.dark .skill-icon {
+    color: var(--color-primary-dark);
+}
+
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-light);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+html.dark #preloader {
+     background-color: var(--bg-dark);
+}
+.loader-initials {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+/* Portfolio */
+#portfolio-modal {
+    transition: opacity 0.3s ease;
+}
+#portfolio-filters .filter-btn {
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+html .filter-btn {
+    border-color: var(--border-light);
+}
+html.dark .filter-btn {
+    border-color: var(--border-dark);
+}
+#portfolio-filters .filter-btn:hover {
+    border-color: var(--color-primary-light);
+}
+html.dark #portfolio-filters .filter-btn:hover {
+     border-color: var(--color-primary-dark);
+}
+#portfolio-filters .filter-btn.active {
+    background-image: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+    border-color: transparent;
+}
+
+/* Swiper pagination */
+.swiper-pagination-bullet-active {
+    background-color: var(--color-primary-light) !important;
+}
+html.dark .swiper-pagination-bullet-active {
+    background-color: var(--color-primary-dark) !important;
+}
+
+/* Custom Tooltip */
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #374151;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 10;
+}
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==============================
+LANGUAGE & RTL STYLES
+==============================
+*/
+
+/* Language Display Logic */
+[lang="ar"], [lang="de"] { display: none; }
+
+html[lang="en"] [lang="en"] { display: inline; }
+html[lang="en"] [lang="ar"], html[lang="en"] [lang="de"] { display: none; }
+
+html[lang="ar"] [lang="ar"] { display: inline; }
+html[lang="ar"] [lang="en"], html[lang="ar"] [lang="de"] { display: none; }
+
+html[lang="de"] [lang="de"] { display: inline; }
+html[lang="de"] [lang="en"], html[lang="de"] [lang="ar"] { display: none; }
+
+
+/* RTL Layout Adjustments */
+html[dir="rtl"] body {
+    direction: rtl;
+    font-family: 'Cairo', 'Inter', sans-serif;
+}
+
+html[dir="rtl"] .md\:text-left {
+    text-align: right !important;
+}
+
+html[dir="rtl"] .text-left {
+    text-align: right !important;
+}
+
+html[dir="rtl"] .md\:pr-12 {
+    padding-right: 0 !important;
+    padding-left: 3rem !important; /* 48px */
+}
+
+html[dir="rtl"] .md\:justify-start {
+    justify-content: flex-end !important;
+}
+
+html[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+}
+html[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+}
+
+html[dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+}
+
+html[dir="rtl"] #modal-close {
+    right: auto;
+    left: 1rem; /* 16px */
+}
+
+html[dir="rtl"] #back-to-top {
+    right: auto;
+    left: 2rem; /* 32px */
+}
+
+html[dir="rtl"] #lang-dropdown {
+    right: auto;
+    left: 0;
+}
+
