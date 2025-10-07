@@ -32,14 +32,10 @@ BASE STYLES
 ==============================
 */
 body {
-    font-family: 'Inter', 'Cairo', sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-light);
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-html[lang="de"] body {
-    font-family: 'Inter', sans-serif;
 }
 
 html.dark body {
@@ -202,72 +198,5 @@ html.dark .swiper-pagination-bullet-active {
 [data-tooltip]:hover::after {
     opacity: 1;
     visibility: visible;
-}
-
-/* ==============================
-LANGUAGE & RTL STYLES
-==============================
-*/
-
-/* Language Display Logic */
-[lang="ar"], [lang="de"] { display: none; }
-
-html[lang="en"] [lang="en"] { display: inline; }
-html[lang="en"] [lang="ar"], html[lang="en"] [lang="de"] { display: none; }
-
-html[lang="ar"] [lang="ar"] { display: inline; }
-html[lang="ar"] [lang="en"], html[lang="ar"] [lang="de"] { display: none; }
-
-html[lang="de"] [lang="de"] { display: inline; }
-html[lang="de"] [lang="en"], html[lang="de"] [lang="ar"] { display: none; }
-
-
-/* RTL Layout Adjustments */
-html[dir="rtl"] body {
-    direction: rtl;
-    font-family: 'Cairo', 'Inter', sans-serif;
-}
-
-html[dir="rtl"] .md\:text-left {
-    text-align: right !important;
-}
-
-html[dir="rtl"] .text-left {
-    text-align: right !important;
-}
-
-html[dir="rtl"] .md\:pr-12 {
-    padding-right: 0 !important;
-    padding-left: 3rem !important; /* 48px */
-}
-
-html[dir="rtl"] .md\:justify-start {
-    justify-content: flex-end !important;
-}
-
-html[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 1;
-}
-html[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 1;
-}
-
-html[dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 1;
-}
-
-html[dir="rtl"] #modal-close {
-    right: auto;
-    left: 1rem; /* 16px */
-}
-
-html[dir="rtl"] #back-to-top {
-    right: auto;
-    left: 2rem; /* 32px */
-}
-
-html[dir="rtl"] #lang-dropdown {
-    right: auto;
-    left: 0;
 }
 

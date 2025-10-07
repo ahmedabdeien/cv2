@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
     // --- DATA ---
     const skillsData = [
-        { name: { en: 'HTML & CSS', ar: 'HTML و CSS', de: 'HTML & CSS' }, percentage: 95 },
-        { name: { en: 'JavaScript', ar: 'جافاسكريبت', de: 'JavaScript' }, percentage: 90 },
-        { name: { en: 'React & Vue', ar: 'React و Vue', de: 'React & Vue' }, percentage: 85 },
-        { name: { en: 'UI/UX Design', ar: 'تصميم الواجهة', de: 'UI/UX Design' }, percentage: 92 },
-        { name: { en: 'Node.js', ar: 'Node.js', de: 'Node.js' }, percentage: 70 },
+        { name: 'HTML & CSS', percentage: 95 },
+        { name: 'JavaScript', percentage: 90 },
+        { name: 'React & Vue', percentage: 85 },
+        { name: 'UI/UX Design', percentage: 92 },
+        { name: 'Node.js', percentage: 70 },
     ];
     
-    // CORRECTED ICON NAMES
     const skillsGridData = [
         { name: 'HTML5', icon: 'file-code-2' },
         { name: 'CSS3', icon: 'palette' },
@@ -24,35 +23,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const portfolioData = [
         { 
             id: 1, 
-            title: { en: 'Corporate Web Presence', ar: 'موقع تعريفي للشركات', de: 'Unternehmens-Webpräsenz' }, 
+            title: 'Corporate Web Presence',
             category: 'web', 
             img: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop', 
             tags: ['React', 'Node.js', 'Vercel'], 
-            desc: { en: 'A sleek and professional website for a corporate client, featuring dynamic content and a modern design.', ar: 'موقع احترافي وأنيق لعميل من قطاع الشركات، يتميز بمحتوى ديناميكي وتصميم عصري.', de: 'Eine elegante und professionelle Website für einen Unternehmenskunden mit dynamischen Inhalten und modernem Design.' } 
+            desc: 'A sleek and professional website for a corporate client, featuring dynamic content and a modern design.'
         },
         { 
             id: 2, 
-            title: { en: 'Digital Branding Identity', ar: 'هوية بصرية رقمية', de: 'Digitale Markenidentität' }, 
+            title: 'Digital Branding Identity',
             category: 'design', 
             img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop', 
             tags: ['Figma', 'Illustrator'], 
-            desc: { en: 'Complete branding guidelines for a tech startup, including logo, color palette, and typography.', ar: 'تصميم هوية بصرية كاملة لشركة تقنية ناشئة، تشمل الشعار، الألوان، والخطوط.', de: 'Vollständige Markenrichtlinien für ein Technologie-Startup, einschließlich Logo, Farbpalette und Typografie.' }
+            desc: 'Complete branding guidelines for a tech startup, including logo, color palette, and typography.'
         },
         { 
             id: 3, 
-            title: { en: 'Mobile Task Manager', ar: 'تطبيق إدارة مهام للجوال', de: 'Mobiler Task-Manager' }, 
+            title: 'Mobile Task Manager',
             category: 'mobile', 
             img: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop', 
             tags: ['React Native', 'Firebase'], 
-            desc: { en: 'A cross-platform mobile app to help users organize their tasks and boost productivity.', ar: 'تطبيق جوال متعدد المنصات لمساعدة المستخدمين على تنظيم مهامهم وزيادة الإنتاجية.', de: 'Eine plattformübergreifende mobile App, mit der Benutzer ihre Aufgaben organisieren und ihre Produktivität steigern können.' }
+            desc: 'A cross-platform mobile app to help users organize their tasks and boost productivity.'
         },
         { 
             id: 4, 
-            title: { en: 'Animated Portfolio Website', ar: 'موقع شخصي متحرك', de: 'Animierte Portfolio-Website' }, 
+            title: 'Animated Portfolio Website',
             category: 'web', 
             img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop', 
             tags: ['HTML', 'CSS', 'GSAP'], 
-            desc: { en: 'A personal portfolio website with stunning animations and a clean, responsive design.', ar: 'موقع أعمال شخصي يتميز بحركات مذهلة وتصميم نظيف ومتجاوب.', de: 'Eine persönliche Portfolio-Website mit atemberaubenden Animationen und einem sauberen, ansprechenden Design.' }
+            desc: 'A personal portfolio website with stunning animations and a clean, responsive design.'
         },
     ];
     
@@ -61,26 +60,19 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'David Rodriguez', role: 'Project Manager, Innovate Inc.', quote: 'Working with them was a seamless experience. Deadlines were always met, communication was clear, and the final quality was impeccable.', avatar: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop' },
         { name: 'Chris Evans', role: 'Lead Designer, Creative Minds', quote: 'A rare talent who bridges the gap between design and development flawlessly. Highly recommended for any ambitious project.', avatar: 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=1976&auto=format&fit=crop' },
     ];
-
-    let currentLang = localStorage.getItem('lang') || 'en';
-    let typed;
     
     // --- DOM ELEMENTS ---
     const skillsContainer = document.getElementById('skills-container');
     const portfolioGrid = document.getElementById('portfolio-grid');
-    const langSwitcherBtn = document.getElementById('lang-switcher-btn');
-    const langDropdown = document.getElementById('lang-dropdown');
-    const currentLangText = document.getElementById('current-lang-text');
 
     // --- RENDER FUNCTIONS ---
     const renderSkills = () => {
         skillsContainer.innerHTML = '';
         skillsData.forEach(skill => {
-            const skillName = skill.name[currentLang] || skill.name['en'];
             const skillHTML = `
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-medium">${skillName}</span>
+                        <span class="font-medium">${skill.name}</span>
                         <span class="font-medium">${skill.percentage}%</span>
                     </div>
                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
@@ -110,12 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
             : portfolioData.filter(item => item.category === filter);
         
         filteredItems.forEach((item, index) => {
-            const title = item.title[currentLang] || item.title['en'];
             const itemHTML = `
                 <div class="portfolio-item group relative overflow-hidden rounded-lg cursor-pointer shadow-lg" data-id="${item.id}" data-aos="fade-up" data-aos-delay="${index * 100}">
-                    <img src="${item.img}" alt="${title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-4">
-                        <h3 class="text-white text-xl font-bold text-center">${title}</h3>
+                        <h3 class="text-white text-xl font-bold text-center">${item.title}</h3>
                         <span class="text-gray-300 capitalize">${item.category}</span>
                     </div>
                 </div>
@@ -123,64 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             portfolioGrid.innerHTML += itemHTML;
         });
     };
-
-    const safeCreateIcons = () => {
-        try {
-            lucide.createIcons();
-        } catch (error) {
-            console.error("Lucide icon creation failed:", error);
-            // This catch block prevents the entire script from crashing.
-        }
-    };
     
-    // --- LANGUAGE SWITCHER LOGIC ---
-    const switchLanguage = (lang) => {
-        currentLang = lang;
-        localStorage.setItem('lang', lang);
-        document.documentElement.lang = lang;
-        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-        currentLangText.textContent = lang.toUpperCase();
-        
-        if (typed) typed.destroy();
-        const typedStrings = {
-            en: ['Creative Designer.', 'Full-Stack Developer.', 'Problem Solver.'],
-            ar: ['مصمم مبدع.', 'مطور متكامل.', 'حلال مشاكل.'],
-            de: ['Kreativer Designer.', 'Full-Stack-Entwickler.', 'Problemlöser.']
-        };
-
-        typed = new Typed('#typed-text', {
-            strings: typedStrings[lang] || typedStrings['en'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true,
-        });
-        
-        renderSkills();
-        renderPortfolio(document.querySelector('#portfolio-filters .filter-btn.active')?.dataset.filter || 'all');
-        langDropdown.classList.add('hidden');
-        
-        // CRITICAL FIX: Re-initialize icons after DOM update
-        safeCreateIcons();
-    };
-
-    langSwitcherBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        langDropdown.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!langSwitcherBtn.contains(e.target)) {
-            langDropdown.classList.add('hidden');
-        }
-    });
-
-    document.querySelectorAll('.lang-option').forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchLanguage(e.target.dataset.lang);
-        });
-    });
-
     // --- PRELOADER ---
     const preloader = document.getElementById('preloader');
     window.addEventListener('load', () => {
@@ -220,6 +154,14 @@ document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
         duration: 800,
         once: true,
+    });
+
+    // --- TYPED.JS ---
+    new Typed('#typed-text', {
+        strings: ['Creative Designer.', 'Full-Stack Developer.', 'Problem Solver.'],
+        typeSpeed: 50,
+        backSpeed: 30,
+        loop: true,
     });
 
     // --- GSAP ANIMATIONS ---
@@ -272,13 +214,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemId = parseInt(item.dataset.id);
             const project = portfolioData.find(p => p.id === itemId);
             if (project) {
-                const title = project.title[currentLang] || project.title['en'];
-                const description = project.desc[currentLang] || project.desc['en'];
-
                 modalImage.src = project.img;
-                modalImage.alt = title;
-                modalTitle.textContent = title;
-                modalDescription.textContent = description;
+                modalImage.alt = project.title;
+                modalTitle.textContent = project.title;
+                modalDescription.textContent = project.desc;
                 modalTags.innerHTML = project.tags.map(tag => `<span class="bg-gray-200 dark:bg-gray-700 text-sm font-medium px-3 py-1 rounded-full">${tag}</span>`).join('');
                 
                 modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -368,9 +307,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- INITIALIZE EVERYTHING ---
-    switchLanguage(currentLang);
-    document.querySelector('#portfolio-filters .filter-btn[data-filter="all"]').classList.add('active');
+    renderSkills();
     renderPortfolio();
-    safeCreateIcons();
+    lucide.createIcons();
 });
 
